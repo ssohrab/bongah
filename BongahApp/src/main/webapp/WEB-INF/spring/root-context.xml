@@ -4,9 +4,37 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
 	
-	<!-- <context:annotation-config /> -->
-	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean name="sessionTracker" class="com.bongah.common.SessionTracker" scope="singleton"/>
-		
+	
+	<!-- Needed for other types of annotations such as @Autowired, etc -->
+	<context:annotation-config />
+	
+	<!-- Database configuration -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/bongah" />
+		<property name="username" value="ssohrab" />
+		<property name="password" value="password" />
+	</bean>
+
+   	<bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+      	<property name="jpaVendorAdapter">
+        	<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+      	</property>
+      	<property name="jpaProperties">
+        	<props>
+            	<prop key="hibernate.hbm2ddl.auto">create-update</prop>
+            	<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+         	</props>
+      	</property>
+	</bean>
+ 
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="myEmf" />
+	</bean>
+ 
+	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+      
+	<bean name="sessionTracker" class="com.bongah.common.SessionTracker" scope="singleton"/>	
 </beans>
