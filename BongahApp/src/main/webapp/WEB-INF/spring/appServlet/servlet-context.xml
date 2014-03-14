@@ -23,4 +23,5 @@
 
     <!-- Ordained by Spring as such -->
 	<context:component-scan base-package="com.bongah.controllers" />
+	<repositories base-package="com.bongah.repositories" />
 </beans:beans>
