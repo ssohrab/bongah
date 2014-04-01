@@ -1,7 +1,7 @@
 var prevMenuIndex = 0;
 var currMenuIndex = 0;
 var liMenuArray = null;
-var leftMarginPercentages = [25, 35, 45, 55, 65];
+var leftMarginPercentages = [0, 33, 41, 48, 65];
 
 function setupMenuItemsMouseEventsHandler()
 {
@@ -9,13 +9,25 @@ function setupMenuItemsMouseEventsHandler()
 
 	liMenuArray.each(function(index, element)
 		{
+			var tag = $(element).attr("tag");
+			
+			if (tag == 0 || tag == 4 || tag == 5)
+			{
+				// Add mouseout event
+				$(element).mouseleave(function(eventObject)
+					{
+						$(this).attr("style", "background-color: #006633");
+					});
+			}
+
+			// Add mouse enter for everyone of the menu items
 			$(element).mouseenter(function(eventObject)
 				{	
 					// Display the hover color
 					$(this).attr("style", "background-color: #009933");
 					
 					prevMenuIndex = currMenuIndex;
-					currMenuIndex = $(this).attr("tag");
+					currMenuIndex = tag;
 					
 					// Make the previous submenu invisible
 					if(prevMenuIndex != currMenuIndex)
@@ -32,9 +44,10 @@ function setupMenuItemsMouseEventsHandler()
 					var leftMarginPercentage = leftMarginPercentages[currMenuIndex];
 					
 					$(subMenuElement).attr("style", "margin-left: " + leftMarginPercentage + "%; display: visible");
-					$(subMenuElement).attr("class", "subMenu horizontal");
+					
+					if (tag != 0 && tag != 4 && tag != 5) $(subMenuElement).attr("class", "subMenu horizontal pointer");
 				});
 		});
-	
-	$("#Menu1").trigger("mouseenter");
+
+	$("#subMenu1").attr("style", "display: visible");
 }
