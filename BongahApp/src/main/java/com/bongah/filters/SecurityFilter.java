@@ -12,16 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class SecurityFilter implements Filter {
+public class SecurityFilter implements Filter
+{
 
 	@Override
-	public void destroy() {
+	public void destroy()
+	{
 		
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+			FilterChain chain) throws IOException, ServletException 
+	{
 		
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 		
@@ -29,19 +32,21 @@ public class SecurityFilter implements Filter {
 		String relativePath = httpRequest.getRequestURI().toString();
 		
 		if (relativePath != null && relativePath.startsWith("/secure")) {
-			if (!httpRequest.isSecure()) {
-				// throw unauthorized access error
-				((HttpServletResponse)response).sendError(HttpServletResponse.SC_UNAUTHORIZED);
-				
-				return;
-			}
+//			if (!httpRequest.isSecure()) 
+//			{
+//				// throw unauthorized access error
+//				((HttpServletResponse)response).sendError(HttpServletResponse.SC_UNAUTHORIZED);
+//				
+//				return;
+//			}
 		}
-		
+
 		chain.doFilter(request, response);
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig arg0) throws ServletException 
+	{
 		
 	}
 }

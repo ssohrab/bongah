@@ -1,11 +1,14 @@
 package com.bongah.common;
 
-public class UserSessionInfo {
+import java.util.Date;
 
+public class UserSessionInfo
+{	
 	private int userId;
+	private Date loginTime;
 	private String sessionId;
 	private boolean loggedIn;
-	
+
 	public int getUserId() {
 		return userId;
 	}
@@ -14,6 +17,16 @@ public class UserSessionInfo {
 		this.userId = userId;
 	}
 	
+	public Date getLoginTime()
+	{
+		return loginTime;
+	}
+	
+	public void setLoginTime(Date date)
+	{
+		loginTime = date;
+	}
+
 	public String getSessionId() {
 		return sessionId;
 	}

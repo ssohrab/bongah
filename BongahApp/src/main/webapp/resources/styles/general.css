@@ -1,0 +1,50 @@
+.centerText {text-align: center;}
+.block {display: block;}
+.username {padding: 0px 5px 0px 0px;}
+.password {padding: 0px 7px 0px 0px;}
+.phoneNumber {padding: 0px 19px 0px 0px;}
+.city {padding: 0px 41px 0px 0px;}
+
+ul
+{
+	padding: 0;
+	margin: 0;
+}
+
+#menuDiv
+{
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+	background-color: #006633;
+}
+
+#subMenuDiv
+{
+	width: 60%;
+	margin-left: 20%;
+	background-color: #009933;
+}
+
+.horizontal li
+{
+	display: inline;
+	padding: 1px 15px 1px 15px;
+	
+}
+
+.menu li
+{
+	color: white;
+	font-size:24pt;
+	cursor: default;
+}
+
+.subMenu li
+{
+	color: white;
+	font-size:18pt;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
