@@ -3,7 +3,7 @@ var currMenuIndex = 0;
 var liMenuArray = null;
 var leftMarginPercentages = [0, 33, 41, 48, 65];
 
-function setupMenuItemsMouseEventsHandler()
+function setupMenuItemsMouseEventsHandlers()
 {
 	liMenuArray = $("#menuUl li");
 
@@ -32,22 +32,51 @@ function setupMenuItemsMouseEventsHandler()
 					// Make the previous submenu invisible
 					if(prevMenuIndex != currMenuIndex)
 					{
-						console.log("prevMenuIndex = " + prevMenuIndex);
-						var prevSubMenuId = "sub" + liMenuArray[prevMenuIndex].id;
-						
+						// Put back the non-hover color
 						$(liMenuArray[prevMenuIndex]).attr("style", "background-color: #006633");
-						$("#" + prevSubMenuId).attr("style", "display: none");
+
+						var prevSubMenuElement = $("#" + "sub" + liMenuArray[prevMenuIndex].id);
+						
+						if (prevSubMenuElement) $(prevSubMenuElement).attr("style", "display: none");
 					}
-					
+
 					var subMenuId = "sub" + this.id;
 					var subMenuElement = $("#" + subMenuId);
 					var leftMarginPercentage = leftMarginPercentages[currMenuIndex];
 					
-					$(subMenuElement).attr("style", "margin-left: " + leftMarginPercentage + "%; display: visible");
-					
-					if (tag != 0 && tag != 4 && tag != 5) $(subMenuElement).attr("class", "subMenu horizontal pointer");
+					if (subMenuElement)
+					{
+						$(subMenuElement).attr("style", "margin-left: " + leftMarginPercentage + "%; display: visible");
+
+						if (tag != 0 && tag != 4 && tag != 5) $(subMenuElement).attr("class", "subMenu horizontal pointer");
+					}
 				});
 		});
 
+	// Add click handler for Login menu item
+	$("#Menu5").click(handleLogin);
+
 	$("#subMenu1").attr("style", "display: visible");
+}
+
+function handleLogin()
+{
+	$( "#loginDiv" ).dialog({
+		autoOpen: true,
+	    height: 230,
+	    width: 500,
+	    modal: true,
+	    buttons:
+	    {
+	    	Login: function()
+	    		{
+	    			$("#loginForm").submit();
+	    		}
+	    }
+	});
+}
+
+function formAJAXSubmit(/*form element*/ form)
+{
+	
 }

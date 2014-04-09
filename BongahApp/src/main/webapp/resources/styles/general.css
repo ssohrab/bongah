@@ -5,6 +5,11 @@
 .phoneNumber {padding: 0px 19px 0px 0px;}
 .city {padding: 0px 41px 0px 0px;}
 
+body
+{
+	margin: 0px 2px 1px 2px;
+}
+
 ul
 {
 	padding: 0;
@@ -59,4 +64,14 @@ ul
 .none
 {
 	cursor: none;
+}
+
+#loginDiv
+{
+	display: none;
+}
+
+label[for="password"]
+{
+	margin: 0px 40px 0px 0px;
 }

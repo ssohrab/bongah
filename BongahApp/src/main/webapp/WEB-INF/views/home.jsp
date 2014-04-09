@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +5,16 @@
 	<title>Better MSL</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/commonjsps/menubar.jsp" %>
+	<!-- The div for the login form dialog -->
+	<%@ include file="/WEB-INF/commonjsps/loginform.jsp" %>
+	
+	<div style="background-color: #009933;">
+		<%@ include file="/WEB-INF/commonjsps/menubar.jsp" %>
+	</div>
+
+	<%@ include file="/WEB-INF/commonjsps/leftad.jsp" %>
+	<%@ include file="/WEB-INF/commonjsps/rightad.jsp" %>
+
 	<br/>
 
 <script type="text/javascript">
@@ -14,7 +22,8 @@
 	(
 		function() 
 		{
-			setupMenuItemsMouseEventsHandler();
+			alert("home");
+			setupMenuItemsMouseEventsHandlers();
 		}
 	);
 
