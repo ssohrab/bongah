@@ -70,13 +70,50 @@ function handleLogin()
 	    {
 	    	Login: function()
 	    		{
-	    			$("#loginForm").submit();
+	    			submitLoginFormViaGet($("#loginForm"));
 	    		}
 	    }
 	});
 }
 
-function formAJAXSubmit(/*form element*/ form)
+function submitLoginFormViaGet(/*form element*/ form)
 {
+	console.log("called");
+	var formData = "";
+	var dataArray = new Array();
+	var theURL = $(form).attr("action");
+
 	
+		var elements = $(form).children().filter(":input");
+
+		alert(elements.length);
+		
+		for (var i = 0; i < elements.length; i++)
+		{
+			var entry = elements[i].id + "=" + $(elements[i]).val();
+			alert("key = " + elements[i].id + ", form.key = " + $(elements[i]).val());
+
+			dataArray.push(entry);
+		}
+
+
+	formData = dataArray.join("&");
+
+	alert("data to submit = "  + formData + ", url = " + theURL);
+
+	$.ajax({
+		url: theURL,
+		type: "GET",
+		data: formData,
+		cache: false,
+		dataType: "text",
+		success: function(data, textStatus, jqXHR)
+		{
+			alert("data=" + data);
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+			alert(jqXHR.status);
+		}
+	});
 }

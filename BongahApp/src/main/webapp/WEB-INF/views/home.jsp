@@ -22,11 +22,9 @@
 	(
 		function() 
 		{
-			alert("home");
 			setupMenuItemsMouseEventsHandlers();
 		}
 	);
-
 
 </script>
 </body>

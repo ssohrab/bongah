@@ -32,7 +32,7 @@ public class SecureController {
 	@Autowired
 	private IUserRepository userRepo;
 
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	@ResponseBody
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model,
 			@RequestParam("email") String email,
