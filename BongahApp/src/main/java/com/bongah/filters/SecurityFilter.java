@@ -29,8 +29,6 @@ public class SecurityFilter implements Filter
 	{
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 
-		((HttpServletResponse)response).setHeader("Access-Control-Allow-Origin", AppConstants.VALUE_LOGIN_URL.replaceAll("login", "*"));
-
 		// Make sure "/secure/*" contents are accessed via HTTPS only.
 		String relativePath = httpRequest.getRequestURI().toString();
 		

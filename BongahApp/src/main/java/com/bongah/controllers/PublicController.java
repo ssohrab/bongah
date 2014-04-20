@@ -13,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bongah.common.AppConstants;
 
@@ -24,9 +22,9 @@ public class PublicController {
 	private static final Logger logger = LoggerFactory.getLogger(PublicController.class);
 	
 	/**
-	 * Returns the main view visible to the public.
+	 * Returns home view, visible to the public.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public String home(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -39,5 +37,16 @@ public class PublicController {
 		model.addAttribute(AppConstants.KEY_LOGIN_URL, AppConstants.VALUE_LOGIN_URL);
 
 		return "home";
+	}
+
+	/**
+	 * Returns accountSettings view
+	 */
+	@RequestMapping(method = RequestMethod.GET, value="/accountSettings")
+	public String accountSettings(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model)
+	{
+		logger.info("Account settings requested");
+
+		return "accountSettings";
 	}
 }

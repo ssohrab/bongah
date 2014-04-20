@@ -1,7 +1,7 @@
 var prevMenuIndex = 0;
 var currMenuIndex = 0;
 var liMenuArray = null;
-var leftMarginPercentages = [0, 33, 41, 48, 65];
+var leftMarginPercentages = [0, 33, 41, 48, 65]; // For sub menus
 
 function setupMenuItemsMouseEventsHandlers()
 {
@@ -11,7 +11,7 @@ function setupMenuItemsMouseEventsHandlers()
 		{
 			var tag = $(element).attr("tag");
 			
-			if (tag == 0 || tag == 4 || tag == 5)
+			if (tag == 0 || tag == 4 || tag == 5 || tag == 6)
 			{
 				// Add mouseout event
 				$(element).mouseleave(function(eventObject)
@@ -53,9 +53,6 @@ function setupMenuItemsMouseEventsHandlers()
 				});
 		});
 
-	// Add click handler for Login menu item
-	$("#Menu5").click(handleLogin);
-
 	$("#subMenu1").attr("style", "display: visible");
 }
 
@@ -70,46 +67,44 @@ function handleLogin()
 	    {
 	    	Login: function()
 	    		{
-	    			submitLoginFormViaGet($("#loginForm"));
+	    			submitFormViaGet($("#loginForm"));
 	    		}
 	    }
 	});
 }
 
-function submitLoginFormViaGet(/*form element*/ form)
+function submitFormViaGet(/*form element*/ form)
 {
-	console.log("called");
 	var formData = "";
 	var dataArray = new Array();
 	var theURL = $(form).attr("action");
-
+	var elements = $(form).children().filter(":input");
 	
-		var elements = $(form).children().filter(":input");
+	for (var i = 0; i < elements.length; i++)
+	{
+		var entry = elements[i].id + "=" + $(elements[i]).val();
 
-		alert(elements.length);
-		
-		for (var i = 0; i < elements.length; i++)
-		{
-			var entry = elements[i].id + "=" + $(elements[i]).val();
-			alert("key = " + elements[i].id + ", form.key = " + $(elements[i]).val());
-
-			dataArray.push(entry);
-		}
-
+		dataArray.push(entry);
+	}
 
 	formData = dataArray.join("&");
-
-	alert("data to submit = "  + formData + ", url = " + theURL);
 
 	$.ajax({
 		url: theURL,
 		type: "GET",
 		data: formData,
 		cache: false,
+		contentType: "text/plain",
 		dataType: "text",
 		success: function(data, textStatus, jqXHR)
 		{
-			alert("data=" + data);
+			alert(data);
+			sessionId = data;
+
+			if (sessionId != "failed")
+			{
+				
+			}
 		},
 		error: function(jqXHR, textStatus, errorThrown)
 		{
@@ -117,3 +112,5 @@ function submitLoginFormViaGet(/*form element*/ form)
 		}
 	});
 }
+
+

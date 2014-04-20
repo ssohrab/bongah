@@ -9,6 +9,9 @@
 <script src="<c:url value="/resources/js/jquery-ui-1.10.2.js" />"></script>
 <script src="<c:url value="/resources/js/jquery-ui-1.10.4.custom.min.js" />"></script>
 
+<c:set var="serverPath" value="http://localhost:8080"></c:set>
+<c:set var="secureServerPath" value="https://localhost:8443/secure"></c:set>
+
 <script type="text/javascript">
 	var sessionId = "failed";
 </script>

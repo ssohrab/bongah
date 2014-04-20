@@ -53,7 +53,17 @@ public class SecureController {
 
 		return sessionId;
 	}
-	
+
+	@RequestMapping(method=RequestMethod.GET, value="/getAccountSettingsData")
+	@ResponseBody
+	public String getAccountSettingsData(HttpServletRequest request, HttpServletResponse response, Model model,
+			@RequestParam("sessionId") String sessionId)
+	{
+		String result = "Test";
+
+		return result;
+	}
+
 	private boolean isUserLoggedInAndSessionValid(String email)
 	{
 		// If the user is logged in, SessionTracker should know
