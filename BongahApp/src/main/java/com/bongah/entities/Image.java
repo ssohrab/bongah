@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="obj_images")
+@Table(name="tbl_images")
 public class Image {
 
     @Id

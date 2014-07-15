@@ -9,18 +9,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bongah.common.AppConstants;
+import com.bongah.common.SessionTracker;
+import com.bongah.repositories.IUserRepository;
 
 @Controller
-public class PublicController {
-	
+public class PublicController 
+{	
 	private static final Logger logger = LoggerFactory.getLogger(PublicController.class);
 	
+	@Autowired
+	private IUserRepository userRepo;
+	
+	@Autowired
+	private SessionTracker sessionTracker;
+
 	/**
 	 * Returns home view, visible to the public.
 	 */
@@ -38,15 +48,13 @@ public class PublicController {
 
 		return "home";
 	}
-
-	/**
-	 * Returns accountSettings view
-	 */
-	@RequestMapping(method = RequestMethod.GET, value="/accountSettings")
-	public String accountSettings(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model)
+	
+	@RequestMapping(method = RequestMethod.GET, value="/getTotalUsers")
+	@ResponseBody
+	public String getTotalUsersInDB(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model)
 	{
-		logger.info("Account settings requested");
+		long numOfUsers = userRepo.count();
 
-		return "accountSettings";
+		return Long.toString(numOfUsers);
 	}
 }

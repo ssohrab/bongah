@@ -5,19 +5,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/*
+ *     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH }, fetch = FetchType.LAZY, targetEntity = TenantSettingInstance.class)
+    @JoinColumn(name = "id_cfg_setting_instance", referencedColumnName = "id_cfg_setting_instance")
+    private ITenantSettingInstance tenantSettingInstance;
+ */
 @Entity
-@Table(name="tbl_users")
-public class UserEntity {
+@Table(name="tbl_properties")
+public class PropertyEntity {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    @Column(name = "property_id")
 	private Integer id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserEntity user;
     
     @Column(name = "last_name")
     private String lastName;

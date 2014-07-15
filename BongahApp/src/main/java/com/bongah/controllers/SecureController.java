@@ -3,6 +3,7 @@ package com.bongah.controllers;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,16 +53,6 @@ public class SecureController {
 		}
 
 		return sessionId;
-	}
-
-	@RequestMapping(method=RequestMethod.GET, value="/getAccountSettingsData")
-	@ResponseBody
-	public String getAccountSettingsData(HttpServletRequest request, HttpServletResponse response, Model model,
-			@RequestParam("sessionId") String sessionId)
-	{
-		String result = "Test";
-
-		return result;
 	}
 
 	private boolean isUserLoggedInAndSessionValid(String email)
@@ -145,5 +136,16 @@ public class SecureController {
 		}
 		
 		return keysList.size();
+	}
+
+	/**
+	 * Returns accountSettings view
+	 */
+	@RequestMapping(method = RequestMethod.GET, value="/accountSettings")
+	public String accountSettings(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model)
+	{
+		logger.info("Account settings requested");
+
+		return "accountSettings";
 	}
 }
