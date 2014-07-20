@@ -1,11 +1,19 @@
 package com.bongah.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="tbl_users")
@@ -16,6 +24,10 @@ public class UserEntity {
     @Column(name = "user_id")
 	private Integer id;
 
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+    @Fetch(FetchMode.SELECT)
+    private List<PropertyEntity> properties;
+    
     @Column(name = "first_name")
     private String firstName;
     
@@ -33,6 +45,16 @@ public class UserEntity {
     
     @Column(name = "password")
     private String password;
+
+    public List<PropertyEntity> getProperties()
+    {
+    	return properties;
+    }
+
+    public void setProperties(List<PropertyEntity> val)
+    {
+    	properties = val;
+    }
 
 	public Integer getId() {
 		return id;

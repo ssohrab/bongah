@@ -1,5 +1,11 @@
-CREATE TABLE tbl_users(user_id INT NOT NULL AUTO_INCREMENT,first_name VARCHAR(64) NOT NULL,last_name VARCHAR(64) NOT NULL,email_address VARCHAR(256) NOT NULL,
-phone_number VARCHAR(32) NOT NULL,email_verification_status BIT(1),password VARCHAR(1024) NOT NULL,PRIMARY KEY(user_id)) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+CREATE TABLE tbl_users(
+    user_id INT NOT NULL AUTO_INCREMENT,
+	first_name VARCHAR(64) NOT NULL,
+	last_name VARCHAR(64) NOT NULL,
+	email_address VARCHAR(256) NOT NULL,
+	phone_number VARCHAR(32) NOT NULL,
+	email_verification_status BIT(1),
+	password VARCHAR(1024) NOT NULL,PRIMARY KEY(user_id)) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE tbl_locations(
 	location_id INT NOT NULL AUTO_INCREMENT,

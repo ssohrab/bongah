@@ -9,11 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/*
- *     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH }, fetch = FetchType.LAZY, targetEntity = TenantSettingInstance.class)
-    @JoinColumn(name = "id_cfg_setting_instance", referencedColumnName = "id_cfg_setting_instance")
-    private ITenantSettingInstance tenantSettingInstance;
- */
 @Entity
 @Table(name="tbl_properties")
 public class PropertyEntity {
@@ -24,24 +19,33 @@ public class PropertyEntity {
 	private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id", nullable=false)
     private UserEntity user;
     
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "property_reference_number")
+    private Integer propertyReferenceNumber;
     
-    @Column(name = "email_address")
-    private String emailAddress;
+    @Column(name = "street_number")
+    private Integer streetNumber;
     
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Column(name = "street_name")
+    private String streetName;
     
-    @Column(name = "email_verification_status")
-    private boolean emailVerification;
+    @Column(name = "city_name")
+    private String cityName;
     
-    @Column(name = "password")
-    private String password;
+    @Column(name = "province_name")
+    private String provinceName;
 
+    @Column(name = "postal_code")
+    private String postalCode;
+    
+    @Column(name = "longitude")
+    private double longitude;
+    
+    @Column(name = "lattitude")
+    private double latitude;
+   
 	public Integer getId() {
 		return id;
 	}
@@ -50,51 +54,75 @@ public class PropertyEntity {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public UserEntity getUser() {
+		return user;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUser(UserEntity user) {
+		this.user = user;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public Integer getPropertyReferenceNumber() {
+		return propertyReferenceNumber;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPropertyReferenceNumber(Integer propertyReferenceNumber) {
+		this.propertyReferenceNumber = propertyReferenceNumber;
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public Integer getStreetNumber() {
+		return streetNumber;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setStreetNumber(Integer streetNumber) {
+		this.streetNumber = streetNumber;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getStreetName() {
+		return streetName;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
 	}
 
-	public boolean isEmailVerification() {
-		return emailVerification;
+	public String getCityName() {
+		return cityName;
 	}
 
-	public void setEmailVerification(boolean emailVerification) {
-		this.emailVerification = emailVerification;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getProvinceName() {
+		return provinceName;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 }
