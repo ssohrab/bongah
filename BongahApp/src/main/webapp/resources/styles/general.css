@@ -7,7 +7,7 @@
 
 body
 {
-	margin: 0px 2px 1px 2px;
+	margin: 2px 2px 1px 2px;
 }
 
 ul
@@ -16,38 +16,53 @@ ul
 	margin: 0;
 }
 
+#menuContainer
+{
+	margin-left: 20%;
+	margin-right: 20%;
+	background-color: #858080;
+    padding-top:1px;
+    padding-bottom:1px;
+}
+
 #menuDiv
 {
-	width: 60%;
-	margin-left: 20%;
+	padding-bottom: 1px;
 	text-align: center;
-	background-color: #006633;
+	background-color: #606060;
+}
+
+#logoDiv
+{
+	margin-left: 20%;
+	margin-bottom: 25px;
 }
 
 #subMenuDiv
 {
-	width: 60%;
-	margin-left: 20%;
-	background-color: #009933;
+	margin-top:3px;
+	background-color: #858080;
 }
 
 .horizontal li
 {
 	display: inline;
-	padding: 1px 15px 1px 15px;
-	
+	padding: 1px 25px 1px 25px;
 }
 
 .menu li
 {
 	color: white;
-	font-size:18pt;
+	font-size:14pt;
+	margin-right:4px;
+	background-color:#606060;
 }
 
 .subMenu li
 {
 	color: white;
 	font-size:12pt;
+	background-color:#858080;
 	text-decoration: underline;
 }
 

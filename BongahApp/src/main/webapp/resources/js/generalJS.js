@@ -1,7 +1,7 @@
 var prevMenuIndex = 0;
 var currMenuIndex = 0;
 var liMenuArray = null;
-var leftMarginPercentages = [0, 33, 41, 48, 65]; // For sub menus
+var leftMarginPercentages = [0, 16, 28, 40, 65]; // For sub menus
 
 function setupMenuItemsMouseEventsHandlers()
 {
@@ -16,7 +16,7 @@ function setupMenuItemsMouseEventsHandlers()
 				// Add mouseout event
 				$(element).mouseleave(function(eventObject)
 					{
-						$(this).attr("style", "background-color: #006633");
+						//$(this).attr("style", "background-color: #006633");
 					});
 			}
 
@@ -24,7 +24,7 @@ function setupMenuItemsMouseEventsHandlers()
 			$(element).mouseenter(function(eventObject)
 				{	
 					// Display the hover color
-					$(this).attr("style", "background-color: #009933");
+					$(this).attr("style", "background-color: #858080");
 					
 					prevMenuIndex = currMenuIndex;
 					currMenuIndex = tag;
@@ -33,7 +33,7 @@ function setupMenuItemsMouseEventsHandlers()
 					if(prevMenuIndex != currMenuIndex)
 					{
 						// Put back the non-hover color
-						$(liMenuArray[prevMenuIndex]).attr("style", "background-color: #006633");
+						$(liMenuArray[prevMenuIndex]).attr("style", "background-color: #606060");
 
 						var prevSubMenuElement = $("#" + "sub" + liMenuArray[prevMenuIndex].id);
 						
